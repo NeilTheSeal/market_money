@@ -1,6 +1,6 @@
 class Market < ApplicationRecord
-  # validates :, presence: true
-
+  validates_presence_of :name, :street, :city, :county, :state, :zip, :lat, :lon 
+                        
   has_many :market_vendors
-  has_many :markets, through: :market_vendors
+  has_many :vendors, through: :market_vendors
 end
