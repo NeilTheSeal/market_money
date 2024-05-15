@@ -2,64 +2,25 @@ module Api
   module V0
     class VendorsController < ApplicationController
       def show
-        @vendor = Vendor.find_by(id: params[:id])
-
-        if @vendor
-          render json: VendorSerializer.new(@vendor)
-        else
-          error = ErrorSerializer.new
-          error.invalid_id("Vendor", params[:id])
-
-          render json: error.list_errors, status: :not_found
-        end
+        @vendor = Vendor.find(params[:id])
+        render json: VendorSerializer.new(@vendor)
       end
 
       def create
-        @vendor = Vendor.new(vendor_params)
-
-        if @vendor.save
-          render json: VendorSerializer.new(@vendor), status: 201
-        else
-          error = ErrorSerializer.new
-          error.invalid_params(@vendor)
-
-          render json: error.list_errors, status: 400
-        end
+        @vendor = Vendor.create!(vendor_params)
+        render json: VendorSerializer.new(@vendor), status: 201
       end
 
       def update
-        @vendor = Vendor.find_by(id: params[:id])
-
-        if @vendor
-          @vendor = Vendor.update(vendor_params)[0]
-          if @vendor.errors.errors.empty?
-            render json: VendorSerializer.new(@vendor), status: 200
-          else
-            error = ErrorSerializer.new
-            error.invalid_params(@vendor)
-
-            render json: error.list_errors, status: 400
-          end
-        else
-          error = ErrorSerializer.new
-          error.invalid_id("Vendor", params[:id])
-
-          render json: error.list_errors, status: 404
-        end
+        @vendor = Vendor.find(params[:id])
+        @vendor.update!(vendor_params)
+        render json: VendorSerializer.new(@vendor), status: 200
       end
 
       def destroy
-        @vendor = Vendor.find_by(id: params[:id])
-
-        if @vendor
-          @vendor.destroy
-          render "", status: 204
-        else
-          error = ErrorSerializer.new
-          error.invalid_id("Vendor", params[:id])
-
-          render json: error.list_errors, status: :not_found
-        end
+        @vendor = Vendor.find(params[:id])
+        @vendor.destroy
+        render "", status: 204
       end
 
       private

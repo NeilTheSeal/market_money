@@ -106,23 +106,23 @@ RSpec.describe "update a vendor using an API request" do
     end
 
     expect(errors[0][:detail]).to eq(
-      "name parameter must not be empty"
+      "name can't be blank"
     )
 
     expect(errors[1][:detail]).to eq(
-      "description parameter must not be empty"
+      "description can't be blank"
     )
 
     expect(errors[2][:detail]).to eq(
-      "contact_name parameter must not be empty"
+      "contact_name can't be blank"
     )
 
     expect(errors[3][:detail]).to eq(
-      "contact_phone parameter must not be empty"
+      "contact_phone can't be blank"
     )
 
     expect(errors[4][:detail]).to eq(
-      "credit_accepted parameter must not be empty"
+      "credit_accepted can't be blank"
     )
   end
 end
