@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "markets" do
+RSpec.describe "market index" do
   before(:each) do
     @markets = create_list(:market, 3)
   end
@@ -54,3 +54,4 @@ RSpec.describe "markets" do
     end
   end
 end
+

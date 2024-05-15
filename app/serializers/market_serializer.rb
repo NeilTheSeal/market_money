@@ -4,3 +4,4 @@ class MarketSerializer
 
   # has_many :vendors
 end
+
