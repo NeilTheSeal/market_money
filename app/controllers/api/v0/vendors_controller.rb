@@ -13,6 +13,31 @@ module Api
           render json: error.list_errors, status: :not_found
         end
       end
+
+      def create
+        @vendor = Vendor.new(vendor_params)
+
+        if @vendor.save
+          render json: VendorSerializer.new(@vendor), status: 201
+        else
+          error = ErrorSerializer.new
+          error.invalid_params(@vendor)
+
+          render json: error.list_errors, status: 400
+        end
+      end
+
+      private
+
+      def vendor_params
+        params.permit(
+          :name,
+          :description,
+          :contact_name,
+          :contact_phone,
+          :credit_accepted
+        )
+      end
     end
   end
 end

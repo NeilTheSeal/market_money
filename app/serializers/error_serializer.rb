@@ -20,4 +20,10 @@ class ErrorSerializer
   def invalid_market_vendor(market_id, vendor_id)
     @errors << "No MarketVendor with market_id=#{market_id} AND vendor_id=#{vendor_id} exists"
   end
+
+  def invalid_params(object)
+    object.errors.errors.each do |error|
+      @errors << "#{error.attribute} parameter must not be empty"
+    end
+  end
 end
