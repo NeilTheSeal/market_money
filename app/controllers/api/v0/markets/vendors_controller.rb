@@ -8,9 +8,10 @@ module Api
           if @market
             render json: VendorSerializer.new(@market.vendors)
           else
-            render json: ErrorSerializer.invalid_id(
-              "Market", params[:market_id]
-            ), status: :not_found
+            error = ErrorSerializer.new
+            error.invalid_id("Market", params[:market_id])
+
+            render json: error.list_errors, status: :not_found
           end
         end
       end
