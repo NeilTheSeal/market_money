@@ -12,7 +12,14 @@ Rails.application.routes.draw do
     namespace :v0 do
       resources :vendors, only: %i[show create update destroy]
 
-      resources :markets, only: %i[index show] do
+      resources(
+        :search,
+        only: %i[index],
+        controller: "markets/search",
+        path: "markets/search"
+      )
+
+      resources :markets, only: %i[index] do
         resources(
           :vendors,
           only: %i[index],
