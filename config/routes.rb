@@ -19,6 +19,7 @@ Rails.application.routes.draw do
           controller: "markets/vendors"
         )
       end
+      resources :market_vendors, only: %i[create]
     end
   end
 end
