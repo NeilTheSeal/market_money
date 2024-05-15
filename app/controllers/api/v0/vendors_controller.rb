@@ -27,6 +27,27 @@ module Api
         end
       end
 
+      def update
+        @vendor = Vendor.find_by(id: params[:id])
+
+        if @vendor
+          @vendor = Vendor.update(vendor_params)[0]
+          if @vendor.errors.errors.empty?
+            render json: VendorSerializer.new(@vendor), status: 200
+          else
+            error = ErrorSerializer.new
+            error.invalid_params(@vendor)
+
+            render json: error.list_errors, status: 400
+          end
+        else
+          error = ErrorSerializer.new
+          error.invalid_id("Vendor", params[:id])
+
+          render json: error.list_errors, status: 404
+        end
+      end
+
       private
 
       def vendor_params
