@@ -3,7 +3,7 @@ class ErrorSerializer
     @errors = []
   end
 
-  def list_errors
+  def serialize_json
     {
       errors: @errors.map do |error|
         {
@@ -13,11 +13,7 @@ class ErrorSerializer
     }
   end
 
-  def invalid_id(type, id)
-    @errors << "Couldn't find #{type} with 'id'=#{id}"
-  end
-
-  def invalid_market_vendor(market_id, vendor_id)
-    @errors << "No MarketVendor with market_id=#{market_id} AND vendor_id=#{vendor_id} exists"
+  def add_error(error_message)
+    @errors << error_message.message
   end
 end
