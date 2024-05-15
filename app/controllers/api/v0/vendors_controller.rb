@@ -48,6 +48,20 @@ module Api
         end
       end
 
+      def destroy
+        @vendor = Vendor.find_by(id: params[:id])
+
+        if @vendor
+          @vendor.destroy
+          render "", status: 204
+        else
+          error = ErrorSerializer.new
+          error.invalid_id("Vendor", params[:id])
+
+          render json: error.list_errors, status: :not_found
+        end
+      end
+
       private
 
       def vendor_params
