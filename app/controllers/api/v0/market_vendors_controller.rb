@@ -1,6 +1,10 @@
 module Api
   module V0
     class MarketVendorsController < ApplicationController
+      # def index
+      #   @market = Market.find(params[:market_id])
+      #   @market_vendors = @market.market_vendors
+      # end
 
       def create
         if params[:market_id].empty? || params[:vendor_id].empty?
@@ -17,6 +21,17 @@ module Api
         @market_vendor = MarketVendor.create!(market_vendor_params)
         render json: MarketVendorSerializer.new(@market_vendor), status: 201
       end
+
+      def destroy
+        begin
+          @market_vendor = MarketVendor.find_by!(market_id: params[:market_id], vendor_id: params[:vendor_id])
+          @market_vendor.destroy
+          render json: "", status: 204
+        rescue ActiveRecord::RecordNotFound
+          render json: { error: "No MarketVendor with market_id=#{params[:market_id]} AND vendor_id=#{params[:vendor_id]} exists" }, status: 404
+        end
+      end
+
     
       private
 

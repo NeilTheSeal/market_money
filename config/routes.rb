@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         member { get :nearest_atms }
       end
       resources :market_vendors, only: %i[create]
+      delete "/market_vendors", to: "market_vendors#destroy"
     end
   end
 end
