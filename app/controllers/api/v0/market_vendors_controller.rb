@@ -23,11 +23,11 @@ module Api
       end
 
       def destroy
-        @market_vendor = MarketVendor.find_by(market_id: params[:market_id], vendor_id: params[:vendor_id])
-        if @market_vendor
+        begin
+          @market_vendor = MarketVendor.find_by!(market_id: params[:market_id], vendor_id: params[:vendor_id])
           @market_vendor.destroy
           render json: "", status: 204
-        else
+        rescue ActiveRecord::RecordNotFound
           render json: { error: "No MarketVendor with market_id=#{params[:market_id]} AND vendor_id=#{params[:vendor_id]} exists" }, status: 404
         end
       end
