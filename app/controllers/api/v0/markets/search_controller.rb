@@ -6,7 +6,7 @@ module Api
           valid_search = check_valid_search(params)
 
           if valid_search
-            @markets = Market.where(search_params)
+            @markets = Market.search(search_params)
           elsif params_empty(params)
             error_message = ErrorMessage.new(
               "At least one search parameter must be present", 422
