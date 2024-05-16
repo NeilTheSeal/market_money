@@ -12,10 +12,18 @@ Rails.application.routes.draw do
     namespace :v0 do
       resources :vendors, only: %i[show create update destroy]
 
+      resources(
+        :search,
+        only: %i[index],
+        controller: "markets/search",
+        path: "markets/search"
+      )
+
       resources :markets, only: %i[index show] do
         resources :vendors, only: %i[index], controller: "markets/vendors"
         member { get :nearest_atms }
       end
+
       resources :market_vendors, only: %i[create]
       delete "/market_vendors", to: "market_vendors#destroy"
     end
