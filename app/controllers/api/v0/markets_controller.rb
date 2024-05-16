@@ -8,6 +8,12 @@ module Api
       def show
         render json: MarketSerializer.new(Market.find(params[:id]))
       end
+
+      def nearest_atms
+        market = Market.find(params[:id])
+        atms = TomTomFacade.nearest_atms(market.lat, market.lon)
+        render json: AtmSerializer.new(atms)
+      end
     end
   end
 end
