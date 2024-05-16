@@ -15,6 +15,7 @@ RSpec.describe "delete a market vendor" do
         vendor_id: @vendor.id
     }.to_json
     )
+
     expect(MarketVendor.count).to eq(0)
 
     expect(response).to have_http_status(204)
@@ -42,6 +43,7 @@ RSpec.describe "delete a market vendor" do
     expect(response).to have_http_status(404)
     body = JSON.parse(response.body, symbolize_names: true)
 
+    expect(body).to be_a(Hash)
     expect(body).to have_key(:error)
     expect(body[:error]).to be_a(String)
     expect(body[:error]).to eq("No MarketVendor with market_id=#{@market.id} AND vendor_id=#{@vendor.id} exists")
