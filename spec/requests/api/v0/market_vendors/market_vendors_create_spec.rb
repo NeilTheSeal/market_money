@@ -43,11 +43,11 @@ RSpec.describe "create a new association between a market and a vendor" do
     expect(vendors_for_market.count).to eq(1)
   end
 
-  it ' returns 404 status if an invalid vendor/market_id is given' do
+  it 'returns 404 status if an invalid vendor/market_id is given' do
     post(
       "/api/v0/market_vendors",
       params: {
-        market_id: 10000,
+        market_id: @market.id.to_s,
         vendor_id: 10001
       }
     )
@@ -64,7 +64,7 @@ RSpec.describe "create a new association between a market and a vendor" do
     expect(errors[0]).to have_key(:detail)
 
     expect(errors[0][:detail]).to eq(
-      "Validation failed: Vendor must exist, Market must exist"
+      "Couldn't find Vendor with 'id'=10001"
     )
   end
 
@@ -72,8 +72,8 @@ RSpec.describe "create a new association between a market and a vendor" do
     post(
       "/api/v0/market_vendors",
       params: {
-        market_id: ,
-        vendor_id: 
+        market_id: "",
+        vendor_id: ""
       }
     )
     expect(response).to have_http_status(400)
@@ -84,12 +84,44 @@ RSpec.describe "create a new association between a market and a vendor" do
 
     errors = body[:errors]
     expect(errors).to be_an(Array)
-
     expect(errors[0]).to be_a(Hash)
     expect(errors[0]).to have_key(:detail)
 
     expect(errors[0][:detail]).to eq(
-      "Validation failed: vendor_id and/or market_id cannot be blank"
+      "market_id and vendor_id cannot be blank"
+    )
+  end
+
+  it 'returns 422 when trying to create a marketvendor that already exists' do
+    post(
+      "/api/v0/market_vendors",
+      params: {
+        market_id: @market.id.to_s,
+        vendor_id: @vendor.id.to_s
+      }
+    )
+
+    post(
+      "/api/v0/market_vendors",
+      params: {
+        market_id: @market.id.to_s,
+        vendor_id: @vendor.id.to_s
+      }
+    )
+
+    expect(response).to have_http_status(422)
+
+    body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(body).to have_key(:errors)
+
+    errors = body[:errors]
+    expect(errors).to be_an(Array)
+    expect(errors[0]).to be_a(Hash)
+    expect(errors[0]).to have_key(:detail)
+
+    expect(errors[0][:detail]).to eq(
+      "This market vendor already exists"
     )
   end
 end
