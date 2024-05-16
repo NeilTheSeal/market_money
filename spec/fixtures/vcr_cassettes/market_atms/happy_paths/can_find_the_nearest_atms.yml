@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tomtom.com/search/2/nearbySearch/.json?categorySet=7397&key=X7j8ICdtbhCKPoA2kIPDM2urzrhBQJKP&language=en-US&lat=36.98844&lon=-121.97483
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 16 May 2024 03:03:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Tracking-Id:
+      - 33c43be2-b8b8-4cc0-9e3c-719a456af599
+      Access-Control-Expose-Headers:
+      - Tracking-ID
+      Server:
+      - tomtom
+      X-Tomtom-Processed-By:
+      - eastus
+      X-Tomtom-Message-Id:
+      - 10bf065b-ca4a-4938-989b-91111dd4b588
+      X-Tomtom-Upstream-Service-Time:
+      - '30'
+      X-Tomtom-Attempt-Count:
+      - '1'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"summary":{"queryType":"NEARBY","queryTime":11,"numResults":10,"offset":0,"totalResults":100,"fuzzyLevel":1,"geoBias":{"lat":36.98844,"lon":-121.97483}},"results":[{"type":"POI","id":"Ahr1KpCA4aHwm7pd14WaBQ","score":99.9650650024,"dist":34.93292,"info":"search:ta:840069009475383-US","poi":{"name":"ATM
+        at Atm Concepts","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"2525","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1950","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"2525 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.98853,"lon":-121.974453},"viewport":{"topLeftPoint":{"lat":36.98943,"lon":-121.97558},"btmRightPoint":{"lat":36.98763,"lon":-121.97333}},"entryPoints":[{"type":"main","position":{"lat":36.98813,"lon":-121.97452}}]},{"type":"POI","id":"G0pRdWfQUMmD25gTH4HlRQ","score":99.9454650879,"dist":54.536307,"info":"search:ta:840069019417142-US","poi":{"name":"Metabank","categorySet":[{"id":7397}],"categories":["cash
+        dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"2425","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1935","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"2425 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.988719,"lon":-121.975335},"viewport":{"topLeftPoint":{"lat":36.98962,"lon":-121.97646},"btmRightPoint":{"lat":36.98782,"lon":-121.97421}},"entryPoints":[{"type":"main","position":{"lat":36.98823,"lon":-121.97541}}]},{"type":"POI","id":"6S1zktHAlBOIpkfAgQeJ7Q","score":99.6635971069,"dist":336.401071,"info":"search:ta:840069002114248-US","poi":{"name":"ATM","phone":"+1
+        831-426-3029","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"2230","streetName":"Sequoia Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1612","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"2230 Sequoia Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.991283,"lon":-121.976126},"viewport":{"topLeftPoint":{"lat":36.99218,"lon":-121.97725},"btmRightPoint":{"lat":36.99038,"lon":-121.975}},"entryPoints":[{"type":"main","position":{"lat":36.99147,"lon":-121.97611}}]},{"type":"POI","id":"JnB914VA3Ik2vG7mz5b73w","score":99.5933380127,"dist":406.667849,"info":"search:ta:840067000451893-US","poi":{"name":"Wells
+        Fargo Santa Cruz","phone":"+1 831-465-2480","brands":[{"name":"Wells Fargo"}],"categorySet":[{"id":7397}],"url":"www.wellsfargo.com","categories":["cash
+        dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"1975","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1837","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"1975 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.98908,"lon":-121.979338},"viewport":{"topLeftPoint":{"lat":36.98998,"lon":-121.98046},"btmRightPoint":{"lat":36.98818,"lon":-121.97821}},"entryPoints":[{"type":"main","position":{"lat":36.98882,"lon":-121.97943}}]},{"type":"POI","id":"yMc0CmXDIm9UETX9SWDpVw","score":99.549697876,"dist":450.298966,"info":"search:ta:840069021331533-US","poi":{"name":"Prosperity
+        Bank","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"1875","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1837","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"1875 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.989275,"lon":-121.979791},"viewport":{"topLeftPoint":{"lat":36.99017,"lon":-121.98092},"btmRightPoint":{"lat":36.98838,"lon":-121.97867}},"entryPoints":[{"type":"main","position":{"lat":36.98893,"lon":-121.97992}}]},{"type":"POI","id":"Fpz9QSOH8OZEGy6qVWov6A","score":99.5239028931,"dist":476.101104,"info":"search:ta:840069006676043-US","poi":{"name":"ATM","categorySet":[{"id":7397}],"categories":["cash
+        dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"1871","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1837","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"1871 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.989335,"lon":-121.980072},"viewport":{"topLeftPoint":{"lat":36.99023,"lon":-121.9812},"btmRightPoint":{"lat":36.98844,"lon":-121.97895}},"entryPoints":[{"type":"main","position":{"lat":36.98899,"lon":-121.98018}}]},{"type":"POI","id":"ZcC6zOjURtwn1__MRhOteQ","score":99.5239028931,"dist":476.101104,"info":"search:ta:840069019663118-US","poi":{"name":"Prosperity
+        Bank","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"1815","streetName":"Soquel Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","extendedPostalCode":"95065-1837","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"1815 Soquel Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.989335,"lon":-121.980072},"viewport":{"topLeftPoint":{"lat":36.99023,"lon":-121.9812},"btmRightPoint":{"lat":36.98844,"lon":-121.97895}},"entryPoints":[{"type":"main","position":{"lat":36.98899,"lon":-121.98018}}]},{"type":"POI","id":"Zv3y0XHR7IzL-5LYe4Ensg","score":99.5065460205,"dist":493.461249,"info":"search:ta:840069015713509-US","poi":{"name":"Rabobank
+        ATM","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"3110","streetName":"Mission Drive","municipality":"Santa
+        Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"3110 Mission Drive, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.989237,"lon":-121.980296},"viewport":{"topLeftPoint":{"lat":36.99014,"lon":-121.98142},"btmRightPoint":{"lat":36.98834,"lon":-121.97917}},"entryPoints":[{"type":"main","position":{"lat":36.98933,"lon":-121.98065}}]},{"type":"POI","id":"zvYhP-YtLZZihdVWATJ4nA","score":99.4432678223,"dist":556.734359,"info":"search:ta:840069019383668-US","poi":{"name":"Prosperity
+        Bank","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"1700","streetName":"Commercial
+        Way","municipality":"Santa Cruz","countrySecondarySubdivision":"Santa Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95065","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"1700 Commercial Way, Santa
+        Cruz, CA 95065","localName":"Santa Cruz"},"position":{"lat":36.987775,"lon":-121.981043},"viewport":{"topLeftPoint":{"lat":36.98867,"lon":-121.98217},"btmRightPoint":{"lat":36.98688,"lon":-121.97992}},"entryPoints":[{"type":"main","position":{"lat":36.98806,"lon":-121.98114}}]},{"type":"POI","id":"eNNjZjaCRNmJYE6z1q6uIw","score":99.3375930786,"dist":662.410138,"info":"search:ta:840069019153313-US","poi":{"name":"Prosperity
+        Bank","categorySet":[{"id":7397}],"categories":["cash dispenser"],"classifications":[{"code":"CASH_DISPENSER","names":[{"nameLocale":"en-US","name":"cash
+        dispenser"}]}]},"address":{"streetNumber":"3711","streetName":"Soquel Drive","municipality":"Soquel","countrySecondarySubdivision":"Santa
+        Cruz","countrySubdivision":"CA","countrySubdivisionName":"California","countrySubdivisionCode":"CA","postalCode":"95073","extendedPostalCode":"95073-2034","countryCode":"US","country":"United
+        States","countryCodeISO3":"USA","freeformAddress":"3711 Soquel Drive, Soquel,
+        CA 95073","localName":"Soquel"},"position":{"lat":36.987649,"lon":-121.967438},"viewport":{"topLeftPoint":{"lat":36.98855,"lon":-121.96856},"btmRightPoint":{"lat":36.98675,"lon":-121.96631}},"entryPoints":[{"type":"main","position":{"lat":36.98718,"lon":-121.96755}}]}]}'
+  recorded_at: Thu, 16 May 2024 03:03:43 GMT
+recorded_with: VCR 6.2.0

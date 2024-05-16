@@ -13,11 +13,8 @@ Rails.application.routes.draw do
       resources :vendors, only: %i[show create update destroy]
 
       resources :markets, only: %i[index show] do
-        resources(
-          :vendors,
-          only: %i[index],
-          controller: "markets/vendors"
-        )
+        resources :vendors, only: %i[index], controller: "markets/vendors"
+        member { get :nearest_atms }
       end
       resources :market_vendors, only: %i[create]
     end
