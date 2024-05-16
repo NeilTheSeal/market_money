@@ -19,13 +19,13 @@ Rails.application.routes.draw do
         path: "markets/search"
       )
 
-      resources :markets, only: %i[index] do
-        resources(
-          :vendors,
-          only: %i[index],
-          controller: "markets/vendors"
-        )
+      resources :markets, only: %i[index show] do
+        resources :vendors, only: %i[index], controller: "markets/vendors"
+        member { get :nearest_atms }
       end
+
+      resources :market_vendors, only: %i[create]
+      delete "/market_vendors", to: "market_vendors#destroy"
     end
   end
 end
