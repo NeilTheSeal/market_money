@@ -16,9 +16,9 @@ class ApplicationController < ActionController::API
     exception.record.errors.errors.each do |error|
       error_message = ErrorMessage.new(
         "#{error.attribute} can't be blank", 400
-        )
-        serializer.add_error(error_message)
-      end
-      render json: serializer.serialize_json, status: 400
+      )
+      serializer.add_error(error_message)
+    end
+    render json: serializer.serialize_json, status: 400
   end
 end

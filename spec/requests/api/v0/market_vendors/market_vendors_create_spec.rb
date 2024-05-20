@@ -6,8 +6,7 @@ RSpec.describe "create a new association between a market and a vendor" do
     @vendor = create(:vendor)
   end
 
-  it 'US-8, creates a MarketVendor' do
-    
+  it "US-8, creates a MarketVendor" do
     post(
       "/api/v0/market_vendors",
       params: {
@@ -43,7 +42,7 @@ RSpec.describe "create a new association between a market and a vendor" do
     expect(vendors_for_market.count).to eq(1)
   end
 
-  it 'returns 404 status if an invalid vendor/market_id is given' do
+  it "returns 404 status if an invalid vendor/market_id is given" do
     post(
       "/api/v0/market_vendors",
       params: {
@@ -66,7 +65,7 @@ RSpec.describe "create a new association between a market and a vendor" do
     )
   end
 
-  it 'returns 400 status if a vendor and/or a market id are not given' do
+  it "returns 400 status if a vendor and/or a market id are not given" do
     post(
       "/api/v0/market_vendors",
       params: {
@@ -87,7 +86,7 @@ RSpec.describe "create a new association between a market and a vendor" do
     expect(error).to eq("market_id and/or vendor_id cannot be blank")
   end
 
-  it 'returns 422 when trying to create a marketvendor that already exists' do
+  it "returns 422 when trying to create a marketvendor that already exists" do
     post(
       "/api/v0/market_vendors",
       params: {
