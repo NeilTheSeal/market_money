@@ -51,7 +51,6 @@ RSpec.describe "create a new association between a market and a vendor" do
         vendor_id: 10001
       }
     )
-    # require 'pry'; binding.pry
     expect(response).to have_http_status(404)
 
     body = JSON.parse(response.body, symbolize_names: true)
