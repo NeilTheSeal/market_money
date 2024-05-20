@@ -47,24 +47,24 @@ RSpec.describe "create a new association between a market and a vendor" do
     post(
       "/api/v0/market_vendors",
       params: {
-        market_id: @market.id.to_s,
+        market_id: @market.id,
         vendor_id: 10001
       }
     )
+    # require 'pry'; binding.pry
     expect(response).to have_http_status(404)
 
     body = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(body).to be_an(Hash)
+    expect(body).to have_key(:error)
+  
+    error = body[:error]
+    expect(error).to be_a(String)
 
-    expect(body).to have_key(:errors)
 
-    errors = body[:errors]
-    expect(errors).to be_an(Array)
-
-    expect(errors[0]).to be_a(Hash)
-    expect(errors[0]).to have_key(:detail)
-
-    expect(errors[0][:detail]).to eq(
-      "Couldn't find Vendor with 'id'=10001"
+    expect(error).to eq(
+      "No MarketVendor relationship between market_id=#{@market.id} AND vendor_id=10001 exists"
     )
   end
 
@@ -80,16 +80,13 @@ RSpec.describe "create a new association between a market and a vendor" do
 
     body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(body).to have_key(:errors)
+    expect(body).to have_key(:error)
+    expect(body).to be_an(Hash)
 
-    errors = body[:errors]
-    expect(errors).to be_an(Array)
-    expect(errors[0]).to be_a(Hash)
-    expect(errors[0]).to have_key(:detail)
+    error = body[:error]
+    expect(error).to be_an(String)
 
-    expect(errors[0][:detail]).to eq(
-      "market_id and vendor_id cannot be blank"
-    )
+    expect(error).to eq("market_id and/or vendor_id cannot be blank")
   end
 
   it 'returns 422 when trying to create a marketvendor that already exists' do
@@ -112,16 +109,15 @@ RSpec.describe "create a new association between a market and a vendor" do
     expect(response).to have_http_status(422)
 
     body = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(body).to be_a(Hash)
+    expect(body).to have_key(:error)
 
-    expect(body).to have_key(:errors)
-
-    errors = body[:errors]
-    expect(errors).to be_an(Array)
-    expect(errors[0]).to be_a(Hash)
-    expect(errors[0]).to have_key(:detail)
-
-    expect(errors[0][:detail]).to eq(
-      "This market vendor already exists"
+    error = body[:error]
+    expect(error).to be_an(String)
+    
+    expect(error).to eq(
+      "This MarketVendor already exists"
     )
   end
 end
