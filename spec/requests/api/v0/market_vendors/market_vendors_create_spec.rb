@@ -57,10 +57,9 @@ RSpec.describe "create a new association between a market and a vendor" do
     
     expect(body).to be_an(Hash)
     expect(body).to have_key(:error)
-  
+    
     error = body[:error]
     expect(error).to be_a(String)
-
 
     expect(error).to eq(
       "No MarketVendor relationship between market_id=#{@market.id} AND vendor_id=10001 exists"

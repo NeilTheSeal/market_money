@@ -23,7 +23,7 @@ RSpec.describe "delete a market vendor" do
     expect(response.body).to eq("")
   end
 
-  it 'returns status 404 and an error message if trying to find the vendor at a market that was deleted' do
+  it 'returns status 404 and an error message if trying to find the vendor at a market that does not exist' do
     delete("/api/v0/market_vendors",
     headers: { "Content-Type" => "application/json", "Accept" => "application/json" },
     params: {

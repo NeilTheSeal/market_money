@@ -1,7 +1,6 @@
 module Api::V0
   class MarketVendorsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     
     BLANK_ID_ERROR = "market_id and/or vendor_id cannot be blank".freeze
     DUPLICATE_ERROR = "This MarketVendor already exists".freeze
@@ -44,10 +43,6 @@ module Api::V0
 
     def render_bad_request_response(message)
       render json: { error: message }, status: :bad_request
-    end
-
-    def render_unprocessable_entity_response(exception)
-      render json: { error: exception.message }, status: :unprocessable_entity
     end
   end
 end
