@@ -5,11 +5,7 @@ class ErrorSerializer
 
   def serialize_json
     {
-      errors: @errors.map do |error|
-        {
-          detail: error
-        }
-      end
+      errors: @errors.map { |error| { detail: error } }
     }
   end
 

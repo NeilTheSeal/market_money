@@ -1,84 +1,48 @@
-module Api
-  module V0
-    class MarketVendorsController < ApplicationController
-      def create
-        return if check_for_errors
+module Api::V0
+  class MarketVendorsController < ApplicationController
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    
+    BLANK_ID_ERROR = "market_id and/or vendor_id cannot be blank".freeze
+    DUPLICATE_ERROR = "This MarketVendor already exists".freeze
+    
+    def create
+      market_id = params.fetch(:market_id, nil)
+      vendor_id = params.fetch(:vendor_id, nil)
 
-        @market = Market.find(params[:market_id])
-        @vendor = Vendor.find(params[:vendor_id])
-
-        @market_vendor = MarketVendor.create!(market_vendor_params)
-        render json: MarketVendorSerializer.new(@market_vendor), status: 201
+      if market_id.blank? || vendor_id.blank?
+        render_bad_request_response(BLANK_ID_ERROR)
+        return
       end
 
-      def destroy
-        @market_vendor = MarketVendor.find_by!(
-          market_id: params[:market_id],
-          vendor_id: params[:vendor_id]
-        )
-        @market_vendor.destroy
-        render json: "", status: 204
-      rescue ActiveRecord::RecordNotFound
-        render json: {
-          error: "No MarketVendor with market_id=#{params[:market_id]} AND vendor_id=#{params[:vendor_id]} exists"
-        }, status: 404
+      market = Market.find(market_id)
+      vendor = Vendor.find(vendor_id)
+
+      if MarketVendor.exists?(market: market, vendor: vendor)
+        render json: { error: DUPLICATE_ERROR }, status: :unprocessable_entity
+      else
+        market_vendor = MarketVendor.create(market: market, vendor: vendor)
+        render json: MarketVendorSerializer.new(market_vendor), status: :created
       end
+    end
 
-      private
+    def destroy
+      @market_vendor = MarketVendor.find_by!(
+        market_id: params[:market_id],
+        vendor_id: params[:vendor_id]
+      )
+      @market_vendor.destroy
+      render json: "", status: :no_content
+    end
 
-      def market_vendor_exists?(par)
-        market_vendors = MarketVendor.where(
-          market_id: par[:market_id],
-          vendor_id: par[:vendor_id]
-        )
-        !market_vendors.empty?
-      end
+    private
 
-      def already_exists
-        error_message = ErrorMessage.new(
-          "This market vendor already exists", 422
-        )
-        serializer = ErrorSerializer.new
-        serializer.add_error(error_message)
-        render json: serializer.serialize_json, status: 422
-        true
-      end
+    def render_not_found_response(message)
+      error_message = "No MarketVendor relationship between market_id=#{params[:market_id]} AND vendor_id=#{params[:vendor_id]} exists"
+      render json: { error: error_message }, status: :not_found
+    end
 
-      def empty_params
-        error_message = ErrorMessage.new(
-          "market_id and vendor_id cannot be blank", 400
-        )
-        serializer = ErrorSerializer.new
-        serializer.add_error(error_message)
-        render json: serializer.serialize_json, status: 400
-        true
-      end
-
-      def market_vendor_params
-        params.permit(:market_id, :vendor_id)
-      end
-
-      def check_for_errors
-        return empty_params if invalid_params?
-
-        return already_exists if market_vendor_exists?(market_vendor_params)
-
-        false
-      end
-
-      def invalid_params?
-        if params[:market_id].instance_of?(Integer) && params[:vendor_id].instance_of?(Integer)
-          return false
-        end
-
-        unless params[:market_id].instance_of?(Integer)
-          return params[:market_id].empty? || params[:market_id].nil?
-        end
-
-        return if params[:vendor_id].instance_of?(Integer)
-
-        params[:vendor_id].empty? || params[:vendor_id].nil?
-      end
+    def render_bad_request_response(message)
+      render json: { error: message }, status: :bad_request
     end
   end
 end
